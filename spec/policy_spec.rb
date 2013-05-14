@@ -253,6 +253,14 @@ describe RubyCop::Policy do
     it { should_not allow('unless 1; 1; else $x; end') }
   end
 
+  context "until" do
+    it { should allow('true until false') }
+  end
+
+  context "while" do
+    it { should allow('true while true') }
+  end
+
   context "yield" do
     it { should allow('def foo; yield; end') }
   end

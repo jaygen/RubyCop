@@ -105,6 +105,14 @@ module RubyCop
       undef
       __callee__
       __method__
+      __dir__
+      caller_locations
+      backtrace_locations
+      define_method
+      using
+      refine
+      prepend
+      prepend_features
     ].to_set.freeze
 
     def visit_Call(node)
@@ -340,6 +348,7 @@ module RubyCop
       TOPLEVEL_BINDING
       Thread
       VERSION
+      TracePoint
     ].freeze
 
     def initialize_const_blacklist

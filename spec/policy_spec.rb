@@ -1,5 +1,4 @@
 require 'ruby_cop'
-require 'pry'
 
 describe RubyCop::Policy do
   let(:policy) { described_class.new }
@@ -263,6 +262,17 @@ describe RubyCop::Policy do
 
   context "yield" do
     it { should allow('def foo; yield; end') }
+  end
+
+  context "Ruby 2.0.0" do
+    it { should_not allow('__dir__') }
+    it { should_not allow('caller_locations') }
+    it { should_not allow('define_method ') }
+    it { should_not allow('using "x"') }
+    it { should_not allow("class Bar\nend\nmodule Foo\nrefine(Bar){}\nend") }
+    it { should_not allow("module Foo\nend\nmodule Bar\nprepend(Foo)\nend") }
+    it { should_not allow("module Foo\nend\nmodule Bar\nprepend_features(Foo)\nend") }
+    it { should_not allow('TracePoint.new') }
   end
 
   context "Rails for Zombies" do

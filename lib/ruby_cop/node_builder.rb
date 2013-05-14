@@ -290,7 +290,7 @@ module RubyCop
       lvalue.assignment(rvalue, operator)
     end
 
-    def on_params(params, optionals, rest, something, block)
+    def on_params(params, optionals, rest, _, block, _ = nil, _ = nil)
       Ruby::Params.new(params, optionals, rest, block)
     end
 
